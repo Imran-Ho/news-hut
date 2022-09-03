@@ -1,5 +1,4 @@
 const loadNewsCategories = () =>{
-    
     fetch(`https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => displayNewsCategory(data.data.news_category) )
@@ -16,8 +15,8 @@ const displayNewsCategory =(categories)=>{
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('category');
         newsDiv.innerHTML = `
-            <div class="flex-sm-row" onclick="getDetails('${category.category_id
-            }')">${category.category_name}</div>
+            <button class="flex-sm-row btn btn-outline-light" onclick="getDetails('${category.category_id
+            }')"><h6 class="text-dark">${category.category_name}</h6></button>
         `;
         newsContainerId.appendChild(newsDiv);
         
@@ -56,6 +55,8 @@ const displayNewsDetails =(newses) =>{
     spinnerField(true);  // spinner get started.
     showingCountItems(newses); // showing item numbers.
     const displayNewsSection = document.getElementById('news-portal');
+    displayNewsSection.innerHTML = '';
+    // newsArray.sort((a, b) => b.total_view - a.total_view);
     newses.forEach(news =>{
         const newsDetailsDiv = document.createElement('div');
         newsDetailsDiv.innerHTML = `
