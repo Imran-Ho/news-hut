@@ -32,7 +32,6 @@ const getDetails = async id =>{
 
 const displayNewsDetails =(newses) =>{
     const displayNewsSection = document.getElementById('news-portal');
-    console.log(newses)
     // for(news of newses){
     //     console.log(news)
     // }
@@ -41,7 +40,7 @@ const displayNewsDetails =(newses) =>{
         console.log(news);
         const newsDetailsDiv = document.createElement('div');
         newsDetailsDiv.innerHTML = `
-                <div class="card mb-3" style="max-width: 75%;">
+                <div class="card mb-3" style="max-width: 100%;">
                 <div class="row g-0">
                 <div class="col-md-4">
                     <img src="${news.thumbnail_url
@@ -61,7 +60,11 @@ const displayNewsDetails =(newses) =>{
                         <div class="me-3"><i class="fa-regular fa-eye"></i></div>
                         <h6>${news.total_view ? news.total_view : 'No Data Available'}</h6>
                         </div>
-                        <div class="me-3"><button class="border border-dark">Get More</button></div>
+                        <div class="me-3">
+                        <button onclick="getModalInfo('${news.category_id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Get More
+                      </button>
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -69,5 +72,19 @@ const displayNewsDetails =(newses) =>{
         `;
         displayNewsSection.appendChild(newsDetailsDiv);
     })
-    // displaySectionDiv = 
+    
+}
+
+const getModalInfo = (info) => {
+    fetch(`https://openapi.programming-hero.com/api/news/category/${info}`)
+    .then(res => res.json())
+    .then(data => console.log(data.data))
+}
+
+displayModalInfo = (modals) =>{
+    // console.log(modals)
+    modals.forEach(modal =>{
+        const {name, published_date} = modal;
+        console.log(published_date)
+    })
 }
