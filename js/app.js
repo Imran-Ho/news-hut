@@ -2,12 +2,13 @@ const loadNewsCategories = () =>{
     fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(res => res.json())
     .then(data => displayNewsCategory(data.data.news_category) )
+    .catch(error => console.log(error))
 }
 
 const displayNewsCategory =(categories)=>{
     const newsContainerId = document.getElementById('news-categories');
     categories.forEach(category => {
-        console.log(category)
+        // console.log(category)
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('category');
         newsDiv.innerHTML = `
@@ -25,19 +26,15 @@ loadNewsCategories()
 
 const getDetails = async id =>{
     const url =`https://openapi.programming-hero.com/api/news/category/${id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsDetails(data.data)
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayNewsDetails(data.data))
+    .catch(error => console.log(error))
 }
 
 const displayNewsDetails =(newses) =>{
     const displayNewsSection = document.getElementById('news-portal');
-    // for(news of newses){
-    //     console.log(news)
-    // }
     newses.forEach(news =>{
-        
-        console.log(news);
         const newsDetailsDiv = document.createElement('div');
         newsDetailsDiv.innerHTML = `
                 <div class="card mb-3" style="max-width: 100%;">
@@ -75,16 +72,28 @@ const displayNewsDetails =(newses) =>{
     
 }
 
+// Uso of Modal
 const getModalInfo = (info) => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${info}`)
     .then(res => res.json())
-    .then(data => console.log(data.data))
+    .then(data => displayModalInfo(data.data))
 }
 
 displayModalInfo = (modals) =>{
     // console.log(modals)
+    
     modals.forEach(modal =>{
-        const {name, published_date} = modal;
-        console.log(published_date)
+        // const {author, total_view,title} = modal;
+        const textId = document.getElementById('titleModalLabel');
+        textId.innerHTML=`
+            <h4>${modal.author.name}</h4>
+        `
+        const modalField = document.getElementById('modal-field');
+        modalField.innerHTML=`
+        <p>Main feature: ${modal.total_view ? modal.total_view : 'no storage data found'}</p>
+        <p>Display Size: ${modal.title ? modal.title : 'no data found'}</p>
+    `;
+
+        // console.log(modal)
     })
 }
