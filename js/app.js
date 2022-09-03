@@ -7,6 +7,8 @@ const loadNewsCategories = (search) =>{
 }
 
 const displayNewsCategory =(categories)=>{
+    showingCountItems(categories);
+    console.log(categories)
     const newsContainerId = document.getElementById('news-categories');
     categories.forEach(category => {
         // console.log(category)
@@ -21,7 +23,19 @@ const displayNewsCategory =(categories)=>{
     })
 }
 
+//show item count from the news category
+const showingCountItems = (categories) =>{
+    const totalNews = categories.length;
+    const totalNewsField = document.getElementById('total-count-field');
+    totalNewsField.innerHTML = '';
+    const totalNewsDiv = document.createElement('div');
+    totalNewsDiv.innerHTML =`
+        <h6 class="bg-light p-3 rounded">${categories.length} item found for this category.</h6>
+    `;
+    totalNewsField.appendChild(totalNewsDiv);
 
+
+}
 
 // for getting details of news categories
 
@@ -34,7 +48,8 @@ const getDetails = (id) =>{
 }
 
 const displayNewsDetails =(newses) =>{
-    // spinnerField(true);
+    spinnerField(true);
+
     const displayNewsSection = document.getElementById('news-portal');
     newses.forEach(news =>{
         const newsDetailsDiv = document.createElement('div');
@@ -98,13 +113,13 @@ displayModalInfo = (modals) =>{
 
         // console.log(modal)
     })
-    // spinnerField(false);
+    spinnerField(false);
 }
 
 // spinner fiels
 const spinnerField = isCalling =>{
-    const loadingSection = document.getElementById('spinner-field'):
-    if(isTrue){
+    const loadingSection = document.getElementById('spinner-field');
+    if(isCalling){
         loadingSection.classList.remove('d-none');
     }
     else{
