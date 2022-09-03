@@ -104,19 +104,18 @@ const getModalInfo = (info) => {
 
 displayModalInfo = (modals) =>{
     // console.log(modals)
-    
     modals.forEach(modal =>{
-        console.log(modal)
+        const {rating, author}= modal;
+        console.log(rating, author)
+
         const textId = document.getElementById('titleModalLabel');
-        textId.innerText= modal.author.name;
-        
+        textId.innerText= author.name;
         const modalField = document.getElementById('modal-field');
         modalField.innerHTML=`
-        <p>Main feature: ${modal.total_view ? modal.total_view : 'no storage data found'}</p>
-        <p>Display Size: ${modal.title ? modal.title : 'no data found'}</p>
+        <p>Rating Badge: ${rating.badge ? rating.badge : 'no storage data found'}</p>
+        <p>Rating Number: ${rating.number ? rating.number : 'no data found'}</p>
     `;
 
-        // console.log(modal)
     })
     
 }
