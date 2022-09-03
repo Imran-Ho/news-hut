@@ -59,10 +59,10 @@ const displayNewsDetails =(newses) =>{
                         <h4>${news.author.name}</h4>
                         </div>
                         <div class="d-flex">
-                        <div><i class="fa-light fa-eye"></i></div>
-                        <h4>${news.total_view}</h4>
+                        <div class="me-3"><i class="fa-regular fa-eye"></i></div>
+                        <h6>${news.total_view}</h6>
                         </div>
-                        <div>2</div>
+                        <div></div>
                     </div>
                 </div>
                 </div>
