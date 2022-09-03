@@ -12,8 +12,8 @@ const displayNewsCategory =(categories)=>{
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('category');
         newsDiv.innerHTML = `
-            <div onclick="getDetails('${category.category_id
-            }')">${category.category_name}</div>
+            <a class="flex-sm-row" onclick="getDetails('${category.category_id
+            }')">${category.category_name}</a>
         `;
         newsContainerId.appendChild(newsDiv);
 
@@ -48,10 +48,10 @@ const displayNewsDetails =(newses) =>{
                     <h5 class="card-title">${news.title}</h5>
                     <p class="card-text my-5">${news.details.slice(0, 150) + '...'}</p>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img class="rounded-circle me-3" style="width: 50px; height: 60px" src="${news.author.img}" alt="">
-                        <h4>${news.author.name ? news.author.name : 'No Data Available'}</h4>
+                    <div class="d-flex justify-content-between justify-content-sm-around">
+                        <div class="d-flex flex-sm-wrap">
+                        <div><img class="rounded-circle me-3" style="width: 50px; height: 60px" src="${news.author.img}" alt=""></div>
+                        <div><h4>${news.author.name ? news.author.name : 'No Data Available'}</h4></div>
                         </div>
                         <div class="d-flex">
                         <div class="me-3"><i class="fa-regular fa-eye"></i></div>
