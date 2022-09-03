@@ -1,6 +1,6 @@
-const loadNewsCategories = () =>{
+const loadNewsCategories = (search) =>{
     
-    fetch('https://openapi.programming-hero.com/api/news/categories')
+    fetch(`https://openapi.programming-hero.com/api/news/${search}`)
     .then(res => res.json())
     .then(data => displayNewsCategory(data.data.news_category) )
     .catch(error => console.log(error))
@@ -13,8 +13,8 @@ const displayNewsCategory =(categories)=>{
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('category');
         newsDiv.innerHTML = `
-            <a class="flex-sm-row" onclick="getDetails('${category.category_id
-            }')">${category.category_name}</a>
+            <div class="flex-sm-row" onclick="getDetails('${category.category_id
+            }')">${category.category_name}</div>
         `;
         newsContainerId.appendChild(newsDiv);
 
@@ -25,7 +25,7 @@ const displayNewsCategory =(categories)=>{
 
 // for getting details of news categories
 
-const getDetails = async id =>{
+const getDetails = (id) =>{
     const url =`https://openapi.programming-hero.com/api/news/category/${id}`;
     fetch(url)
     .then(res => res.json())
@@ -102,14 +102,15 @@ displayModalInfo = (modals) =>{
 }
 
 // spinner fiels
-// const spinnerField = isCalling =>{
-//     const loadingSection = document.getElementById('spinner-field'):
-//     if(isCalling){
-//         loadingSection.classList.remove('d-none');
-//     }
-//     else{
-//         loadingSection.classList.add('d-none');
-//     }
+const spinnerField = isCalling =>{
+    const loadingSection = document.getElementById('spinner-field'):
+    if(isTrue){
+        loadingSection.classList.remove('d-none');
+    }
+    else{
+        loadingSection.classList.add('d-none');
+    }
 
-// }
-loadNewsCategories()
+}
+
+loadNewsCategories('categories')
