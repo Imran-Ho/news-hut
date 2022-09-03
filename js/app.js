@@ -50,19 +50,18 @@ const displayNewsDetails =(newses) =>{
                 <div class="col-md-8">
                     <div class="card-body">
                     <h5 class="card-title">${news.title}</h5>
-                    <p class="card-text">${news.details.slice(0, 120) + '...'}</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <p class="card-text my-5">${news.details.slice(0, 150) + '...'}</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="d-flex">
                         <img class="rounded-circle me-3" style="width: 50px; height: 60px" src="${news.author.img}" alt="">
-                        <h4>${news.author.name}</h4>
+                        <h4>${news.author.name ? news.author.name : 'No Data Available'}</h4>
                         </div>
                         <div class="d-flex">
                         <div class="me-3"><i class="fa-regular fa-eye"></i></div>
-                        <h6>${news.total_view}</h6>
+                        <h6>${news.total_view ? news.total_view : 'No Data Available'}</h6>
                         </div>
-                        <div></div>
+                        <div class="me-3"><button class="border border-dark">Get More</button></div>
                     </div>
                 </div>
                 </div>
