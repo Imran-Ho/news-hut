@@ -1,4 +1,5 @@
 const loadNewsCategories = () =>{
+    
     fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(res => res.json())
     .then(data => displayNewsCategory(data.data.news_category) )
@@ -20,7 +21,7 @@ const displayNewsCategory =(categories)=>{
     })
 }
 
-loadNewsCategories()
+
 
 // for getting details of news categories
 
@@ -33,6 +34,7 @@ const getDetails = async id =>{
 }
 
 const displayNewsDetails =(newses) =>{
+    // spinnerField(true);
     const displayNewsSection = document.getElementById('news-portal');
     newses.forEach(news =>{
         const newsDetailsDiv = document.createElement('div');
@@ -96,16 +98,18 @@ displayModalInfo = (modals) =>{
 
         // console.log(modal)
     })
+    // spinnerField(false);
 }
 
 // spinner fiels
-const spinnerField = isCalling =>{
-    const loadingSection = document.getElementById('spinner-field'):
-    if(isCalling){
-        loadingSection.classList.remove('d-none');
-    }
-    else{
-        loadingSection.classList.add('d-none');
-    }
+// const spinnerField = isCalling =>{
+//     const loadingSection = document.getElementById('spinner-field'):
+//     if(isCalling){
+//         loadingSection.classList.remove('d-none');
+//     }
+//     else{
+//         loadingSection.classList.add('d-none');
+//     }
 
-}
+// }
+loadNewsCategories()
