@@ -1,14 +1,15 @@
-const loadNewsCategories = (search) =>{
+const loadNewsCategories = () =>{
     
-    fetch(`https://openapi.programming-hero.com/api/news/${search}`)
+    fetch(`https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => displayNewsCategory(data.data.news_category) )
     .catch(error => console.log(error))
 }
 
 const displayNewsCategory =(categories)=>{
-    showingCountItems(categories);
-    console.log(categories)
+
+    // showingCountItems(categories);
+    // console.log(categories)
     const newsContainerId = document.getElementById('news-categories');
     categories.forEach(category => {
         // console.log(category)
@@ -19,18 +20,22 @@ const displayNewsCategory =(categories)=>{
             }')">${category.category_name}</div>
         `;
         newsContainerId.appendChild(newsDiv);
+        
 
     })
 }
 
-//show item count from the news category
-const showingCountItems = (categories) =>{
-    const totalNews = categories.length;
+//show item numbers from the news category
+
+const showingCountItems = (newses) =>{
+    const totalNews = newses;
+    const arrLeng =totalNews.length;
+    console.log(arrLeng)
     const totalNewsField = document.getElementById('total-count-field');
     totalNewsField.innerHTML = '';
     const totalNewsDiv = document.createElement('div');
     totalNewsDiv.innerHTML =`
-        <h6 class="bg-light p-3 rounded">${categories.length} item found for this category.</h6>
+        <h6>${arrLeng} item found for this category.</h6>
     `;
     totalNewsField.appendChild(totalNewsDiv);
 
@@ -48,8 +53,8 @@ const getDetails = (id) =>{
 }
 
 const displayNewsDetails =(newses) =>{
-    spinnerField(true);
-
+    spinnerField(true);  // spinner get started.
+    showingCountItems(newses); // showing item numbers.
     const displayNewsSection = document.getElementById('news-portal');
     newses.forEach(news =>{
         const newsDetailsDiv = document.createElement('div');
@@ -86,11 +91,12 @@ const displayNewsDetails =(newses) =>{
         `;
         displayNewsSection.appendChild(newsDetailsDiv);
     })
-    
+    spinnerField(false); //spinner ended here.
 }
 
 // Uso of Modal
 const getModalInfo = (info) => {
+
     fetch(`https://openapi.programming-hero.com/api/news/category/${info}`)
     .then(res => res.json())
     .then(data => displayModalInfo(data.data))
@@ -100,11 +106,10 @@ displayModalInfo = (modals) =>{
     // console.log(modals)
     
     modals.forEach(modal =>{
-        // const {author, total_view,title} = modal;
+        console.log(modal)
         const textId = document.getElementById('titleModalLabel');
-        textId.innerHTML=`
-            <h4>${modal.author.name}</h4>
-        `
+        textId.innerText= modal.author.name;
+        
         const modalField = document.getElementById('modal-field');
         modalField.innerHTML=`
         <p>Main feature: ${modal.total_view ? modal.total_view : 'no storage data found'}</p>
@@ -113,10 +118,10 @@ displayModalInfo = (modals) =>{
 
         // console.log(modal)
     })
-    spinnerField(false);
+    
 }
 
-// spinner fiels
+// spinner function call field
 const spinnerField = isCalling =>{
     const loadingSection = document.getElementById('spinner-field');
     if(isCalling){
@@ -128,4 +133,4 @@ const spinnerField = isCalling =>{
 
 }
 
-loadNewsCategories('categories')
+loadNewsCategories()
