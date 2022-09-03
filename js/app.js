@@ -97,3 +97,15 @@ displayModalInfo = (modals) =>{
         // console.log(modal)
     })
 }
+
+// spinner fiels
+const spinnerField = isCalling =>{
+    const loadingSection = document.getElementById('spinner-field'):
+    if(isCalling){
+        loadingSection.classList.remove('d-none');
+    }
+    else{
+        loadingSection.classList.add('d-none');
+    }
+
+}
