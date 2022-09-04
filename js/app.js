@@ -109,8 +109,7 @@ displayModalInfo = (modals) =>{
         <p>Rating Number: ${rating.number ? rating.number : 'no data found'}</p>
     `;
 
-    })
-    
+    }) 
 }
 
 // spinner function call field
