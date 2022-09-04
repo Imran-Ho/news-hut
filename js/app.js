@@ -49,7 +49,8 @@ const displayNewsDetails =(newses) =>{
     showingCountItems(newses); // showing item numbers.
     const displayNewsSection = document.getElementById('news-portal');
     displayNewsSection.innerHTML = '';
-    // newsArray.sort((a, b) => b.total_view - a.total_view);
+    // newses.sort((a, b) => b.total_view - a.total_view);
+    // console.log(a, b)
     newses.forEach(news =>{
         const newsDetailsDiv = document.createElement('div');
         newsDetailsDiv.innerHTML = `
