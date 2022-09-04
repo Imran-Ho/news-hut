@@ -6,12 +6,8 @@ const loadNewsCategories = () =>{
 }
 
 const displayNewsCategory =(categories)=>{
-
-    // showingCountItems(categories);
-    // console.log(categories)
     const newsContainerId = document.getElementById('news-categories');
     categories.forEach(category => {
-        // console.log(category)
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('category');
         newsDiv.innerHTML = `
@@ -20,7 +16,6 @@ const displayNewsCategory =(categories)=>{
         `;
         newsContainerId.appendChild(newsDiv);
         
-
     })
 }
 
@@ -37,8 +32,6 @@ const showingCountItems = (newses) =>{
         <h6>${arrLeng} item found for this category.</h6>
     `;
     totalNewsField.appendChild(totalNewsDiv);
-
-
 }
 
 // for getting details of news categories
@@ -97,7 +90,6 @@ const displayNewsDetails =(newses) =>{
 
 // Uso of Modal
 const getModalInfo = (info) => {
-
     fetch(`https://openapi.programming-hero.com/api/news/category/${info}`)
     .then(res => res.json())
     .then(data => displayModalInfo(data.data))
@@ -108,7 +100,6 @@ displayModalInfo = (modals) =>{
     modals.forEach(modal =>{
         const {rating, author}= modal;
         console.log(rating, author)
-
         const textId = document.getElementById('titleModalLabel');
         textId.innerText= author.name;
         const modalField = document.getElementById('modal-field');
